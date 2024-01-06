@@ -17,24 +17,41 @@ struct ContentView: View {
                 Section("Text to Encrypt/Decrypt") {
                     TextField("Text to Encrypt/Decrypt", text: $input)
                         .lineLimit(2)
-                    Button("Start") {
-                        let lInput = input.lowercased()
-                        output = ""
-                        
-                        for char in lInput {
-                            let index = alphabet.firstIndex(of: String(char))
+                    HStack {
+                        Spacer()
+                        Button("Encrypt") {
+                            let lInput = input.lowercased()
+                            output = ""
                             
-                            if let index = index {
-                                let shiftedIndex = (index + shift) % alphabet.count
-                                output = "\(output)\(alphabet[shiftedIndex])"
-                            } else {
-                                output = "\(output)\(char)"
+                            for char in lInput {
+                                let index = alphabet.firstIndex(of: String(char))
+                                
+                                if let index = index {
+                                    let shiftedIndex = (index + shift) % alphabet.count
+                                    output = "\(output)\(alphabet[shiftedIndex])"
+                                } else {
+                                    output = "\(output)\(char)"
+                                }
                             }
-                        }
-                    }
-                    .padding(.top, 20)
-                    .buttonStyle(.borderedProminent)
-                        .frame(maxWidth: .infinity)
+                        }.buttonStyle(.borderedProminent)
+                        Spacer()
+                        Button("Decrypt") {
+                            let lInput = input.lowercased()
+                            output = ""
+                            
+                            for char in lInput {
+                                let index = alphabet.firstIndex(of: String(char))
+                                
+                                if let index = index {
+                                    let shiftedIndex = ((index - shift) + alphabet.count) % alphabet.count
+                                    output = "\(output)\(alphabet[shiftedIndex])"
+                                } else {
+                                    output = "\(output)\(char)"
+                                }
+                            }
+                        }.buttonStyle(.bordered)
+                        Spacer()
+                    }.padding(.top, 20)
                 }
                 
                 Section("Encrypt/Decrypt Result") {
