@@ -14,6 +14,18 @@ struct ContentView: View {
                     TextField("Text to Encrypt/Decrypt", text: $input)
                         .lineLimit(2)
                         .disabled(hasSubmitted)
+                        .textInputAutocapitalization(.never)
+                }
+                
+                Section("Shift") {
+                    Picker("Digits", selection: $shift) {
+                        ForEach(1...25, id: \.self) { digit in
+                            Text("\(digit)")
+                        }
+                    }
+                }
+                
+                Section("Submit") {
                     HStack {
                         if hasSubmitted {
                             Spacer()
@@ -41,7 +53,7 @@ struct ContentView: View {
                             }
                             Spacer()
                         }
-                    }.padding(.top, 20)
+                    }
                 }
                 
                 Section("Encrypt/Decrypt Result") {
@@ -50,10 +62,6 @@ struct ContentView: View {
             }
         }
         .padding()
-    }
-    
-    func handleButtonClick() -> Void {
-        
     }
 }
 
