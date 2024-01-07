@@ -1,26 +1,39 @@
-//
-//  ChoiceButton.swift
-//  CaesarCipher
-//
-//  Created by Michael on 07.01.24.
-//
-
 import SwiftUI
 
 struct ChoiceButton: View {
-    var caption = ""
-    var style: BorderedProminentButtonStyle = .borderedProminent
-    var algo: () -> Void
+    var caption: String
+    let alphabet = ["a", "b", "c", "d", "e", "f",
+                    "g", "h", "i", "j", "k", "l",
+                    "m", "n", "o", "p", "q", "r",
+                    "s", "t", "u", "v", "w", "x",
+                    "y", "z"]
+    let shift: Int
+    @Binding var input: String
+    @Binding var output: String
+    @Binding var hasSubmitted: Bool
+    var algo: (Int, Int, Int) -> Int
     
     var body: some View {
         Button(caption) {
-            algo()
-        }.buttonStyle(style)
+            guard input.isEmpty == false else {
+                return
+            }
+            
+            let lInput = input.lowercased()
+            hasSubmitted = true
+            output = ""
+            
+            for char in lInput {
+                let index = alphabet.firstIndex(of: String(char))
+                
+                if let index = index {
+                    let shiftedIndex = algo(index, 1, alphabet.count)
+                    output = "\(output)\(alphabet[shiftedIndex])"
+                } else {
+                    output = "\(output)\(char)"
+                }
+            }
+        }.buttonStyle(.bordered)
     }
 }
 
-#Preview {
-    ChoiceButton() {
-        
-    }
-}

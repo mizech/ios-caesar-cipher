@@ -5,11 +5,6 @@ struct ContentView: View {
     @State var output = ""
     @State var shift  = 1
     @State var hasSubmitted = false
-    let alphabet = ["a", "b", "c", "d", "e", "f",
-                    "g", "h", "i", "j", "k", "l",
-                    "m", "n", "o", "p", "q", "r",
-                    "s", "t", "u", "v", "w", "x",
-                    "y", "z"]
     
     var body: some View {
         VStack {
@@ -31,39 +26,21 @@ struct ContentView: View {
                             Spacer()
                         } else {
                             Spacer()
-                            Button("Encrypt") {
-                                let lInput = input.lowercased()
-                                hasSubmitted = true
-                                output = ""
-                                
-                                for char in lInput {
-                                    let index = alphabet.firstIndex(of: String(char))
-                                    
-                                    if let index = index {
-                                        let shiftedIndex = (index + shift) % alphabet.count
-                                        output = "\(output)\(alphabet[shiftedIndex])"
-                                    } else {
-                                        output = "\(output)\(char)"
-                                    }
-                                }
-                            }.buttonStyle(.borderedProminent)
+                            ChoiceButton(caption: "Encrypt",
+                                         shift: shift,
+                                         input: $input,
+                                         output: $output,
+                                         hasSubmitted: $hasSubmitted) { index, shift, count in
+                                (index + shift) % count
+                            }
                             Spacer()
-                            Button("Decrypt") {
-                                let lInput = input.lowercased()
-                                hasSubmitted = true
-                                output = ""
-                                
-                                for char in lInput {
-                                    let index = alphabet.firstIndex(of: String(char))
-                                    
-                                    if let index = index {
-                                        let shiftedIndex = ((index - shift) + alphabet.count) % alphabet.count
-                                        output = "\(output)\(alphabet[shiftedIndex])"
-                                    } else {
-                                        output = "\(output)\(char)"
-                                    }
-                                }
-                            }.buttonStyle(.bordered)
+                            ChoiceButton(caption: "Decrypt",
+                                         shift: shift,
+                                         input: $input,
+                                         output: $output,
+                                         hasSubmitted: $hasSubmitted) { index, shift, count in
+                                ((index - shift) + count) % count
+                            }
                             Spacer()
                         }
                     }.padding(.top, 20)
