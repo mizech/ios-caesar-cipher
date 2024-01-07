@@ -27,18 +27,16 @@ struct ContentView: View {
                         } else {
                             Spacer()
                             ChoiceButton(caption: "Encrypt",
-                                         shift: shift,
                                          input: $input,
                                          output: $output,
-                                         hasSubmitted: $hasSubmitted) { index, shift, count in
+                                         hasSubmitted: $hasSubmitted) { index, count in
                                 (index + shift) % count
                             }
                             Spacer()
                             ChoiceButton(caption: "Decrypt",
-                                         shift: shift,
                                          input: $input,
                                          output: $output,
-                                         hasSubmitted: $hasSubmitted) { index, shift, count in
+                                         hasSubmitted: $hasSubmitted) { index, count in
                                 ((index - shift) + count) % count
                             }
                             Spacer()

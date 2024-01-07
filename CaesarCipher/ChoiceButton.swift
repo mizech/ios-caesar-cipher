@@ -7,11 +7,10 @@ struct ChoiceButton: View {
                     "m", "n", "o", "p", "q", "r",
                     "s", "t", "u", "v", "w", "x",
                     "y", "z"]
-    let shift: Int
     @Binding var input: String
     @Binding var output: String
     @Binding var hasSubmitted: Bool
-    var algo: (Int, Int, Int) -> Int
+    var algo: (Int, Int) -> Int
     
     var body: some View {
         Button(caption) {
@@ -27,7 +26,7 @@ struct ChoiceButton: View {
                 let index = alphabet.firstIndex(of: String(char))
                 
                 if let index = index {
-                    let shiftedIndex = algo(index, 1, alphabet.count)
+                    let shiftedIndex = algo(index, alphabet.count)
                     output = "\(output)\(alphabet[shiftedIndex])"
                 } else {
                     output = "\(output)\(char)"
