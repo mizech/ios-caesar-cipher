@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ChoiceButton: View {
-    var caption: String
+    var caption: LocalizedStringResource
     let alphabet = ["a", "b", "c", "d", "e", "f",
                     "g", "h", "i", "j", "k", "l",
                     "m", "n", "o", "p", "q", "r",
@@ -13,7 +13,7 @@ struct ChoiceButton: View {
     var algo: (Int, Int) -> Int
     
     var body: some View {
-        Button(caption) {
+        Button(String(localized: caption.localizedStringResource)) {
             guard input.isEmpty == false else {
                 return
             }

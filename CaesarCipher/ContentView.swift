@@ -11,7 +11,7 @@ struct ContentView: View {
             Text("Caesar Cipher").font(.title)
             Form {
                 Section("Text to Encrypt/Decrypt") {
-                    TextField("Text to Encrypt/Decrypt", text: $input)
+                    TextField("Insert text here", text: $input)
                         .lineLimit(2)
                         .disabled(hasSubmitted)
                         .textInputAutocapitalization(.never)
@@ -37,21 +37,19 @@ struct ContentView: View {
                             }.buttonStyle(.borderedProminent)
                             Spacer()
                         } else {
-                            Spacer()
-                            ChoiceButton(caption: "Encrypt",
+                            ChoiceButton(caption: LocalizedStringResource("Encrypt", defaultValue: "Encrypt"),
                                          input: $input,
                                          output: $output,
                                          hasSubmitted: $hasSubmitted) { index, count in
                                 (index + shift) % count
                             }
-                            Spacer()
-                            ChoiceButton(caption: "Decrypt",
+                            Spacer() 
+                            ChoiceButton(caption: LocalizedStringResource("Decrypt", defaultValue: "Decrypt"),
                                          input: $input,
                                          output: $output,
                                          hasSubmitted: $hasSubmitted) { index, count in
                                 ((index - shift) + count) % count
                             }
-                            Spacer()
                         }
                     }
                 }
