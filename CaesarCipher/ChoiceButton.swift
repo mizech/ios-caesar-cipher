@@ -2,11 +2,16 @@ import SwiftUI
 
 struct ChoiceButton: View {
     var caption: LocalizedStringResource
-    let alphabet = ["a", "b", "c", "d", "e", "f",
+    let lowAlphabet = ["a", "b", "c", "d", "e", "f",
                     "g", "h", "i", "j", "k", "l",
                     "m", "n", "o", "p", "q", "r",
                     "s", "t", "u", "v", "w", "x",
                     "y", "z"]
+    let upAlphabet = ["A", "B", "C", "D", "E", "F",
+                    "G", "H", "I", "J", "K", "L",
+                    "M", "N", "O", "P", "Q", "R",
+                    "S", "T", "U", "V", "W", "X",
+                    "Y", "Z"]
     @Binding var input: String
     @Binding var output: String
     @Binding var hasSubmitted: Bool
@@ -18,16 +23,23 @@ struct ChoiceButton: View {
                 return
             }
             
-            let lInput = input.lowercased()
             hasSubmitted = true
             output = ""
             
-            for char in lInput {
-                let index = alphabet.firstIndex(of: String(char))
+            for char in input {
+                var index = lowAlphabet.firstIndex(of: String(char))
+                var usedAlphabet = [String]()
+                
+                if index == nil {
+                    index = upAlphabet.firstIndex(of: String(char))
+                    usedAlphabet = upAlphabet
+                } else {
+                    usedAlphabet = lowAlphabet
+                }
                 
                 if let index = index {
-                    let shiftedIndex = algo(index, alphabet.count)
-                    output = "\(output)\(alphabet[shiftedIndex])"
+                    let shiftedIndex = algo(index, usedAlphabet.count)
+                    output = "\(output)\(usedAlphabet[shiftedIndex])"
                 } else {
                     output = "\(output)\(char)"
                 }
