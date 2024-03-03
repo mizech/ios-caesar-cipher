@@ -30,8 +30,8 @@ struct ChoiceButton: View {
                 var index = lowAlphabet.firstIndex(of: String(char))
                 var usedAlphabet = [String]()
                 
-                if index == nil {
-                    index = upAlphabet.firstIndex(of: String(char))
+                if index == nil { // If char couldn't be found in the lowercase-alphabet ...
+                    index = upAlphabet.firstIndex(of: String(char)) // ... then try to find the char in the uppercase-alphabet
                     usedAlphabet = upAlphabet
                 } else {
                     usedAlphabet = lowAlphabet
