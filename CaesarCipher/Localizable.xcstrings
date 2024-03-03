@@ -21,6 +21,9 @@
         }
       }
     },
+    "Copy" : {
+
+    },
     "Decrypt" : {
       "localizations" : {
         "de" : {

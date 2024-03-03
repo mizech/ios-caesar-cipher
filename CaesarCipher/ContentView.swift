@@ -6,6 +6,8 @@ struct ContentView: View {
     @State var shift  = 1
     @State var hasSubmitted = false
     
+    let clipboard = UIPasteboard.general
+    
     var body: some View {
         VStack {
             Text("Caesar Cipher").font(.title)
@@ -28,7 +30,6 @@ struct ContentView: View {
                 Section("Submit") {
                     HStack {
                         if hasSubmitted {
-                            Spacer()
                             Button("Reset") {
                                 input = ""
                                 output = ""
@@ -36,6 +37,9 @@ struct ContentView: View {
                                 shift = 1
                             }.buttonStyle(.borderedProminent)
                             Spacer()
+                            Button("Copy") {
+                                self.clipboard.string = output
+                            }.buttonStyle(.borderedProminent)
                         } else {
                             ChoiceButton(caption: LocalizedStringResource("Encrypt", defaultValue: "Encrypt"),
                                          input: $input,
