@@ -18,7 +18,7 @@ struct ChoiceButton: View {
     var algo: (Int, Int) -> Int
     
     var body: some View {
-        Button(String(localized: caption.localizedStringResource)) {
+        Button(action: {
             guard input.isEmpty == false else {
                 return
             }
@@ -44,7 +44,11 @@ struct ChoiceButton: View {
                     output = "\(output)\(char)"
                 }
             }
-        }.buttonStyle(.bordered)
+        }, label: {
+            Text(String(localized: caption.localizedStringResource))
+                .frame(maxWidth: .infinity)
+        })
+        .buttonStyle(.bordered)
     }
 }
 

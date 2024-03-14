@@ -28,18 +28,24 @@ struct ContentView: View {
                 }
                 
                 Section("Submit") {
-                    HStack {
+                    VStack {
                         if hasSubmitted {
-                            Button("Reset") {
+                            Button(action: {
                                 input = ""
                                 output = ""
                                 hasSubmitted = false
                                 shift = 1
-                            }.buttonStyle(.borderedProminent)
-                            Spacer()
-                            Button("Copy") {
+                            }, label: {
+                                Text("Reset")
+                                    .frame(maxWidth: .infinity)
+                            }).buttonStyle(.bordered)
+                            
+                            Button(action: {
                                 self.clipboard.string = output
-                            }.buttonStyle(.borderedProminent)
+                            }, label: {
+                                Text("Copy")
+                                    .frame(maxWidth: .infinity)
+                            }).buttonStyle(.bordered)
                         } else {
                             ChoiceButton(caption: LocalizedStringResource("Encrypt", defaultValue: "Encrypt"),
                                          input: $input,
@@ -47,7 +53,6 @@ struct ContentView: View {
                                          hasSubmitted: $hasSubmitted) { index, count in
                                 (index + shift) % count
                             }
-                            Spacer() 
                             ChoiceButton(caption: LocalizedStringResource("Decrypt", defaultValue: "Decrypt"),
                                          input: $input,
                                          output: $output,
@@ -57,7 +62,6 @@ struct ContentView: View {
                         }
                     }
                 }
-                
                 Section("Encrypt/Decrypt Result") {
                     Text(output).bold()
                 }
