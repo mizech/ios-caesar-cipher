@@ -8,6 +8,10 @@ struct ContentView: View {
     
     let clipboard = UIPasteboard.general
     
+    init() {
+        UITextField.appearance().clearButtonMode = .whileEditing
+    }
+    
     var body: some View {
         VStack {
             Text("Caesar Cipher").font(.title)
