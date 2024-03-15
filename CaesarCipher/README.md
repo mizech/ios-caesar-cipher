@@ -8,3 +8,8 @@ Enter a text to encrypt/decrypt. Choose a number for the count of digits the sin
 
 The app doesn't collect any user-data.
 
+## Changes 3.0
+- TextField Clear-Button
+- TextField Autocorrection disabled
+- Buttons in vertical order and full width.
+- Improved section-captions

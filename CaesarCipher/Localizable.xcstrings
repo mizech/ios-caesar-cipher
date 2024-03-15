@@ -11,6 +11,16 @@
         }
       }
     },
+    "Actions" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktionen"
+          }
+        }
+      }
+    },
     "Caesar Cipher" : {
       "localizations" : {
         "de" : {
@@ -97,16 +107,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Verschieben"
-          }
-        }
-      }
-    },
-    "Submit" : {
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Absenden"
           }
         }
       }

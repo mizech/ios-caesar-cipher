@@ -9,7 +9,7 @@ struct ContentView: View {
     let clipboard = UIPasteboard.general
     
     init() {
-        UITextField.appearance().clearButtonMode = .whileEditing
+        UITextField.appearance().clearButtonMode = .always
     }
     
     var body: some View {
@@ -21,6 +21,7 @@ struct ContentView: View {
                         .lineLimit(2)
                         .disabled(hasSubmitted)
                         .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
                 }
                 
                 Section("Shift") {
@@ -31,7 +32,7 @@ struct ContentView: View {
                     }
                 }
                 
-                Section("Submit") {
+                Section("Actions") {
                     VStack {
                         if hasSubmitted {
                             Button(action: {
