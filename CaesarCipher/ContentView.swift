@@ -17,7 +17,10 @@ struct ContentView: View {
             Text("Caesar Cipher").font(.title)
             Form {
                 Section("Text to Encrypt/Decrypt") {
-                    TextField("Insert text here", text: $input)
+                    TextField(
+                        "Insert text here",
+                        text: $input
+                    )
                         .lineLimit(2)
                         .disabled(hasSubmitted)
                         .textInputAutocapitalization(.never)
@@ -33,7 +36,7 @@ struct ContentView: View {
                 }
                 
                 Section("Actions") {
-                    VStack {
+                    VStack(spacing: 20) {
                         if hasSubmitted {
                             Button(action: {
                                 input = ""
@@ -41,27 +44,35 @@ struct ContentView: View {
                                 hasSubmitted = false
                                 shift = 1
                             }, label: {
-                                Text("Reset")
+                                Label("Reset", systemImage: "xmark.circle")
+                                    .foregroundColor(.red)
                                     .frame(maxWidth: .infinity)
                             }).buttonStyle(.bordered)
                             
                             Button(action: {
                                 self.clipboard.string = output
                             }, label: {
-                                Text("Copy")
+                                Label("Copy", systemImage: "doc.on.doc")
+                                    .foregroundColor(.green)
                                     .frame(maxWidth: .infinity)
                             }).buttonStyle(.bordered)
                         } else {
-                            ChoiceButton(caption: LocalizedStringResource("Encrypt", defaultValue: "Encrypt"),
-                                         input: $input,
-                                         output: $output,
-                                         hasSubmitted: $hasSubmitted) { index, count in
+                            CryptButton(
+                                imageName: "eye.slash",
+                                caption: LocalizedStringResource("Encrypt", defaultValue: "Encrypt"),
+                                input: $input,
+                                output: $output,
+                                hasSubmitted: $hasSubmitted
+                            ) { index, count in
                                 (index + shift) % count
                             }
-                            ChoiceButton(caption: LocalizedStringResource("Decrypt", defaultValue: "Decrypt"),
-                                         input: $input,
-                                         output: $output,
-                                         hasSubmitted: $hasSubmitted) { index, count in
+                            CryptButton(
+                                imageName: "eye",
+                                caption: LocalizedStringResource("Decrypt", defaultValue: "Decrypt"),
+                                input: $input,
+                                output: $output,
+                                hasSubmitted: $hasSubmitted
+                            ) { index, count in
                                 ((index - shift) + count) % count
                             }
                         }

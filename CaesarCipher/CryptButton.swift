@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CryptButton: View {
+    var imageName: String
     var caption: LocalizedStringResource
     let lowAlphabet = ["a", "b", "c", "d", "e", "f",
                     "g", "h", "i", "j", "k", "l",
@@ -44,8 +45,12 @@ struct CryptButton: View {
                     output = "\(output)\(char)"
                 }
             }
-        }, label: {
-            Text(String(localized: caption.localizedStringResource))
+        },
+               label: {
+            Label(
+                String(localized: caption.localizedStringResource),
+                systemImage: imageName
+            )
                 .frame(maxWidth: .infinity)
         })
         .buttonStyle(.bordered)
