@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ChoiceButton: View {
+struct CryptButton: View {
     var caption: LocalizedStringResource
     let lowAlphabet = ["a", "b", "c", "d", "e", "f",
                     "g", "h", "i", "j", "k", "l",
