@@ -91,6 +91,16 @@
         }
       }
     },
+    "Paste" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einfügen"
+          }
+        }
+      }
+    },
     "Reset" : {
       "localizations" : {
         "de" : {

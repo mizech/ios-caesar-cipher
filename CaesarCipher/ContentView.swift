@@ -57,6 +57,15 @@ struct ContentView: View {
                                     .frame(maxWidth: .infinity)
                             }).buttonStyle(.bordered)
                         } else {
+                            Button(action: {
+                                if let clipboardStr = clipboard.string {
+                                    input = "\(input)\(clipboardStr)"
+                                }
+                            }, label: {
+                                Label("Paste", systemImage: "doc.on.clipboard.fill")
+                                    .foregroundColor(.green)
+                                    .frame(maxWidth: .infinity)
+                            }).buttonStyle(.bordered)
                             CryptButton(
                                 imageName: "eye.slash",
                                 caption: LocalizedStringResource("Encrypt", defaultValue: "Encrypt"),
