@@ -96,7 +96,12 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(action: {
-                        if let url = URL(string: "https://en.wikipedia.org/wiki/Caesar_cipher") {
+                        var sUrl = "https://en.wikipedia.org/wiki/Caesar_cipher"
+                        if Locale.current.identifier.lowercased().starts(with: "de") == true {
+                            sUrl = "https://de.wikipedia.org/wiki/Caesar-Verschl%C3%BCsselung"
+                        }
+                        
+                        if let url = URL(string: sUrl) {
                             UIApplication.shared.open(url)
                         }
                     }, label: {
